@@ -1,4 +1,5 @@
 import express from "express";
+import { fileURLToPath } from "url";
 import { connectDB } from "./lib/db.js";
 import dotenv from "dotenv";
 import authRoute from "./routes/auth.route.js";
@@ -20,11 +21,12 @@ const app = express();
 app.use(express.json({ limit: "50mb" }));
 app.use(cookieParser());
 
-const __dirname = path.resolve();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.NODE_ENV === "production" ? true : "http://localhost:5173",
     credentials: true,
   })
 );
@@ -90,16 +92,10 @@ try {
 }
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
-  app.use((req, res, next) => {
-    const filePath = path.join(__dirname, "../frontend", "dist", "index.html");
-    res.sendFile(filePath, (err) => {
-      if (err) {
-        console.error("Failed to serve frontend:", err);
-        res.status(500).send("Something went wrong");
-      }
-    });
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
   });
 }
 
