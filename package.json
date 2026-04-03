@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/haroonkpk/fullstack-ecommerce-marketplace.git"
+    "url": "git+https://github.com/Esha30/ecommerce-fullstack-design.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Esha30",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/haroonkpk/fullstack-ecommerce-marketplace/issues"
+    "url": "https://github.com/Esha30/ecommerce-fullstack-design/issues"
   },
-  "homepage": "https://github.com/haroonkpk/fullstack-ecommerce-marketplace#readme"
+  "homepage": "https://github.com/Esha30/ecommerce-fullstack-design#readme"
 }
